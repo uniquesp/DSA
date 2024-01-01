@@ -1,0 +1,58 @@
+--------------------Approch1-----------------------------------------
+class Solution {
+    public String reverseWords(String s) {
+        int n = s.length();
+        String ans = "";
+        String temp = "";
+        int left = 0, right = n - 1;
+
+        while (left <= right) {
+            char ch = s.charAt(left);
+            if (ch != ' ') {
+                temp += ch;
+            } else {
+                if (!temp.equals("")) {
+                    if (!ans.equals("")) {
+                        ans = temp + " " + ans;
+                    } else {
+                        ans = temp;
+                    }
+                    temp = "";
+                }
+            }
+            left++;
+        }
+
+        if (!temp.equals("")) {
+            if (!ans.equals("")) {
+                ans = temp + " " + ans;
+            } else {
+                ans = temp;
+            }
+        }
+
+        return ans;
+    }
+}
+
+--------------------Approch2-----------------------------------------
+class Solution {
+    public String reverseWords(String s) {
+       s.trim();
+       StringBuilder st = new StringBuilder();
+       for(int i = s.length()-1 ;i >= 0 ;i--){
+           if(s.charAt(i) == ' ' ){
+               continue;
+               
+            }
+            int pos = i;
+            while(i>=0 && s.charAt(i) != ' '){
+                i--;
+            }
+            st.append(s.substring(i+1, pos+1)).append(" ");
+        }
+        return st.toString().trim();
+    }
+}
+--------------------------------------Approch3------------------------
+Using Stack
