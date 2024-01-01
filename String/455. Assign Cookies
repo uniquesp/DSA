@@ -1,0 +1,45 @@
+//find the minimum size of cookie that satisfies child requirement
+//at most = same value or more than that
+
+------------------Approch 1------------------------------------
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        //O(nolgn)
+        //S(1)
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int i = g.length - 1, j = s.length - 1;
+        int c = 0;
+        while(i >= 0 && j >= 0){
+            if(g[i] <= s[j]){
+                j--;
+                c++;
+            }
+            i--;
+        }
+
+        return c;
+    }
+}
+
+
+
+
+--------------------------------Approch 2------------------------------------
+
+
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        int count=0,i=0,j=0; 
+        Arrays.sort(g);
+        Arrays.sort(s);
+        while(i<g.length-1 && j< s.length-1){
+            if(g[i]<=s[j]){
+                i++;
+                count++;
+            }
+            j++;
+        }
+        return count;    
+    }
+}
