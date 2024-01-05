@@ -3,10 +3,6 @@
 //S.C : O(n)
 
 
-
-
-
-
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
@@ -19,7 +15,7 @@ class Solution {
                 we want to eliminate the duplicates as well.
                 lower_bound returns the index of "next greater or equal to."
             */
-            int index = binarySearch(sorted, nums[i]);
+            int index = binarySearch(sorted, nums[i]);//to find just greater than or equal to element of nums[i]
 
             if (index == sorted.size())
                 sorted.add(nums[i]); // greatest: so insert it
