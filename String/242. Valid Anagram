@@ -1,0 +1,29 @@
+class Solution {
+    public static boolean isAnagram(String s, String t) {
+        // Check if the lengths are different
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        // Use an array to count the frequency of each character
+        int[] count = new int[26];
+
+        // Increment counts for characters in the first string
+        for (char c : s.toCharArray()) {
+            count[c - 'a']++;
+        }
+    
+        // Decrement counts for characters in the second string
+        for (char c : t.toCharArray()) {
+            count[c - 'a']--;
+
+            // If a character count becomes negative, it means the strings are not anagrams
+            if (count[c - 'a'] < 0) {
+                return false;
+            }
+        }
+
+        // If all counts are zero, the strings are anagrams
+        return true;
+    }
+}

@@ -1,0 +1,60 @@
+// n = 4
+//1 => 1
+//2 => one times 1 previous seq : 11
+//3 => two times 1 in previous seq : 21
+//4 => one times 2 and 1 times 1 in pre seq:  1211
+//so the ans is 1211 for n=4
+-----------------------------------Approch1-------------------------------------------------------
+class Solution {
+    public String countAndSay(int n) {
+        //base case
+        if(n==1){
+            return "1";
+        }
+        //recurrsion call
+        String say = countAndSay(n-1);
+
+        //processing 
+        String result = "";
+        for(int i=0;i<say.length();i++){
+            char ch  = say.charAt(i);
+            int count = 1;
+            while(i<say.length()-1 && say.charAt(i)==say.charAt(i+1)){
+                count++;
+                i++;
+            }
+            result += Integer.toString(count) + ch;
+        }
+        return result;
+    }
+}
+
+----------------------------------Approch2--------------------------------------------
+class Solution {
+    public String countAndSay(int n) {
+        String s = "1";
+        for(int i=1; i< n; i++){
+            s = countIdx(s);
+        }
+        return s;
+    }
+
+    public String countIdx(String s){
+        StringBuilder sb = new StringBuilder();
+        char c = s.charAt(0);
+        int count = 1;
+        for(int i = 1; i< s.length(); i++){
+            if(s.charAt(i) == c){
+                count++;
+            }else{
+                sb.append(count);
+                sb.append(c);
+                c = s.charAt(i);
+                count = 1;
+            }
+        }
+        sb.append(count);
+        sb.append(c);
+        return sb.toString();
+    }
+}
