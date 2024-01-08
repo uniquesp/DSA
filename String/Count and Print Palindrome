@@ -27,8 +27,11 @@
 			if (ch != ' ')
 				word = word + ch;
 			else {
-				if (checkPalin(word))
-					count++;
+				if (checkPalin(word)){
+                    count++;
+                    System.out.println(word);
+                }
+
 				word = "";
 			}
 		}
