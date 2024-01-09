@@ -1,0 +1,49 @@
+Link: https://leetcode.com/problems/leaf-similar-trees/
+
+#############################################################################################################
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+//app1: simple inorder traversal and store leaf node in array and then compare these two arrays are similar or not
+// app2: simple inorder traversal and store leaf node in string 
+// 1 conditition here is s1= "12 1" and s2= "1 21" it gives true so to restrict this situation append 1 char after inserting leaf value e.g: "12_1_" && "1_21_"
+
+class Solution {
+
+    public void inorder(TreeNode root, StringBuilder str){
+        if(root==null){
+            return;
+        }
+        //condition for leaf node
+        if(root.left==null && root.right==null){
+            str.append(root.val).append("-");
+            return;
+        }
+        //if it is not leaf node
+        inorder(root.left,str);
+        inorder(root.right,str);   
+    }
+
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        StringBuilder s1=new StringBuilder();
+        StringBuilder s2=new StringBuilder();
+        inorder(root1,s1);
+        inorder(root2,s2);
+        return s1.toString().equals(s2.toString());
+    }
+}
